@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ApexEdge Funding | Trade With Our Capital</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --bg: #080c14;
+    --bg2: #0d1320;
+    --bg3: #111827;
+    --border: #1e2d45;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --gold: #f59e0b;
+    --green: #10b981;
+    --red: #ef4444;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --card: #0d1825;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,12,20,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: var(--text); }
+  .nav-links { display: flex; gap: 2rem; align-items: center; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+  .btn-nav {
+    background: var(--accent); color: var(--bg);
+    padding: 0.5rem 1.2rem; border-radius: 6px;
+    font-weight: 600; font-size: 0.85rem; cursor: pointer;
+    border: none; transition: opacity 0.2s;
+  }
+  .btn-nav:hover { opacity: 0.85; }
+
+  /* ── PAGES ── */
+  .page { display: none; padding-top: 64px; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: calc(100vh - 64px);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 4rem 2rem;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(0,212,255,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 80%, rgba(124,58,237,0.1) 0%, transparent 60%),
+      var(--bg);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-badge {
+    background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3);
+    color: var(--accent); padding: 0.35rem 1rem; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em;
+    margin-bottom: 1.5rem; display: inline-block;
+  }
+  .hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700; line-height: 1.1;
+    letter-spacing: -2px; margin-bottom: 1.5rem;
+  }
+  .hero h1 .hl { color: var(--accent); }
+  .hero p {
+    font-size: 1.15rem; color: var(--muted);
+    max-width: 560px; line-height: 1.7; margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    background: var(--accent); color: var(--bg);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 700; font-size: 1rem; cursor: pointer;
+    border: none; transition: all 0.2s;
+    box-shadow: 0 0 24px rgba(0,212,255,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 32px rgba(0,212,255,0.5); }
+  .btn-outline {
+    background: transparent; color: var(--text);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 600; font-size: 1rem; cursor: pointer;
+    border: 1px solid var(--border); transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    flex-wrap: wrap; justify-content: center;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 2rem; font-weight: 700; color: var(--accent);
+  }
+  .stat-lbl { font-size: 0.8rem; color: var(--muted); margin-top: 0.2rem; }
+
+  /* ── SECTION ── */
+  section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 0.8rem;
+    font-family: 'Space Mono', monospace;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700; letter-spacing: -1px; margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--muted); max-width: 500px; line-height: 1.7; }
+
+  /* ── CHALLENGE CARD ── */
+  .challenge-wrapper { margin-top: 3rem; }
+  .plan-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 2.5rem;
+    max-width: 480px; margin: 0 auto;
+    position: relative; overflow: hidden;
+  }
+  .plan-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .plan-badge {
+    display: inline-block;
+    background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3);
+    color: var(--accent); padding: 0.25rem 0.8rem; border-radius: 50px;
+    font-size: 0.75rem; font-weight: 600; margin-bottom: 1.2rem;
+  }
+  .plan-price {
+    font-size: 0.9rem; color: var(--muted); margin-bottom: 0.3rem;
+  }
+  .plan-price-main {
+    font-family: 'Space Mono', monospace;
+    font-size: 3rem; font-weight: 700; color: var(--text);
+    line-height: 1;
+  }
+  .plan-price-main span { font-size: 1.2rem; color: var(--muted); }
+  .plan-account { 
+    font-size: 1rem; color: var(--gold); font-weight: 600; margin-top: 0.5rem;
+  }
+
+  .phases { margin: 2rem 0; display: flex; flex-direction: column; gap: 1rem; }
+  .phase-tab {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem 1.2rem;
+  }
+  .phase-tab h4 {
+    font-size: 0.85rem; font-weight: 600; color: var(--accent); margin-bottom: 0.6rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .phase-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .phase-rules { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .phase-rule { font-size: 0.82rem; color: var(--muted); }
+  .phase-rule strong { color: var(--text); }
+
+  .plan-divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+  .plan-perks { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem; }
+  .perk {
+    display: flex; align-items: center; gap: 0.7rem;
+    font-size: 0.88rem; color: var(--muted);
+  }
+  .perk-icon { color: var(--green); font-size: 0.9rem; flex-shrink: 0; }
+
+  .btn-purchase {
+    width: 100%; background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white; border: none; padding: 1rem; border-radius: 10px;
+    font-size: 1rem; font-weight: 700; cursor: pointer; transition: opacity 0.2s;
+  }
+  .btn-purchase:hover { opacity: 0.9; transform: translateY(-1px); }
+
+  /* ── HOW IT WORKS ── */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+  .step-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.8rem;
+  }
+  .step-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 2rem; font-weight: 700; color: var(--accent);
+    opacity: 0.4; line-height: 1; margin-bottom: 1rem;
+  }
+  .step-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .step-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+  /* ── RULES TABLE ── */
+  .rules-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .rules-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden;
+  }
+  .rules-card-header {
+    padding: 1rem 1.5rem;
+    background: var(--bg3); border-bottom: 1px solid var(--border);
+    font-size: 0.85rem; font-weight: 700; color: var(--accent);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .rules-table { width: 100%; border-collapse: collapse; }
+  .rules-table tr { border-bottom: 1px solid var(--border); }
+  .rules-table tr:last-child { border: none; }
+  .rules-table td { padding: 0.8rem 1.5rem; font-size: 0.85rem; }
+  .rules-table td:first-child { color: var(--muted); }
+  .rules-table td:last-child { font-weight: 600; text-align: right; font-family: 'Space Mono', monospace; font-size: 0.8rem; }
+  .val-green { color: var(--green); }
+  .val-red { color: var(--red); }
+  .val-gold { color: var(--gold); }
+  .val-blue { color: var(--accent); }
+
+  /* ── PAYMENT ── */
+  .payment-section {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 2.5rem; margin-top: 3rem;
+  }
+  .payment-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .ptab {
+    padding: 0.5rem 1.2rem; border-radius: 8px;
+    border: 1px solid var(--border); background: transparent;
+    color: var(--muted); font-size: 0.85rem; cursor: pointer;
+    transition: all 0.2s; font-family: 'Space Grotesk', sans-serif;
+  }
+  .ptab.active { background: rgba(0,212,255,0.1); border-color: var(--accent); color: var(--accent); }
+  .payment-detail { display: none; }
+  .payment-detail.active { display: block; }
+  .wallet-box {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.2rem 1.5rem;
+  }
+  .wallet-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.4rem; }
+  .wallet-addr {
+    font-family: 'Space Mono', monospace; font-size: 0.82rem;
+    color: var(--accent); word-break: break-all; line-height: 1.5;
+  }
+  .copy-btn {
+    margin-top: 0.8rem; background: rgba(0,212,255,0.1);
+    border: 1px solid rgba(0,212,255,0.3); color: var(--accent);
+    padding: 0.4rem 1rem; border-radius: 6px; font-size: 0.8rem;
+    cursor: pointer; transition: all 0.2s; font-family: 'Space Grotesk', sans-serif;
+  }
+  .copy-btn:hover { background: rgba(0,212,255,0.2); }
+  .payment-note {
+    margin-top: 1rem; padding: 0.8rem 1rem;
+    background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 8px; font-size: 0.82rem; color: #fbbf24; line-height: 1.6;
+  }
+
+  /* ── AUTH PAGE ── */
+  .auth-page {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 2rem;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(124,58,237,0.12) 0%, transparent 60%),
+      var(--bg);
+  }
+  .auth-box {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 2.5rem; width: 100%; max-width: 420px;
+  }
+  .auth-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.3rem; font-weight: 700; color: var(--accent);
+    text-align: center; margin-bottom: 0.5rem;
+  }
+  .auth-logo span { color: var(--text); }
+  .auth-title {
+    text-align: center; font-size: 1.4rem; font-weight: 700;
+    margin: 1.5rem 0 0.3rem;
+  }
+  .auth-sub { text-align: center; color: var(--muted); font-size: 0.88rem; margin-bottom: 2rem; }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-label { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.4rem; display: block; font-weight: 500; }
+  .form-input {
+    width: 100%; background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.75rem 1rem; color: var(--text);
+    font-size: 0.9rem; font-family: 'Space Grotesk', sans-serif;
+    transition: border-color 0.2s; outline: none;
+  }
+  .form-input:focus { border-color: var(--accent); }
+  .form-input::placeholder { color: var(--muted); }
+  .btn-full {
+    width: 100%; background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: white; border: none; padding: 0.9rem; border-radius: 10px;
+    font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 0.5rem;
+    transition: opacity 0.2s; font-family: 'Space Grotesk', sans-serif;
+  }
+  .btn-full:hover { opacity: 0.9; }
+  .auth-switch {
+    text-align: center; margin-top: 1.5rem; font-size: 0.85rem; color: var(--muted);
+  }
+  .auth-switch a { color: var(--accent); cursor: pointer; text-decoration: none; }
+  .auth-switch a:hover { text-decoration: underline; }
+  .divider-row {
+    display: flex; align-items: center; gap: 1rem; margin: 1.5rem 0;
+  }
+  .divider-row hr { flex: 1; border: none; border-top: 1px solid var(--border); }
+  .divider-row span { font-size: 0.8rem; color: var(--muted); }
+
+  /* ── DASHBOARD ── */
+  .dashboard { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+  .dash-header { margin-bottom: 2.5rem; }
+  .dash-header h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .dash-header p { color: var(--muted); font-size: 0.9rem; }
+  .welcome-name { color: var(--accent); }
+
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .metric-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.4rem;
+  }
+  .metric-label { font-size: 0.78rem; color: var(--muted); margin-bottom: 0.5rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+  .metric-val {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.6rem; font-weight: 700;
+  }
+  .metric-change { font-size: 0.78rem; margin-top: 0.3rem; }
+
+  .dash-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; }
+  @media (max-width: 768px) { .dash-grid { grid-template-columns: 1fr; } }
+
+  .dash-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.5rem;
+  }
+  .dash-card-title {
+    font-size: 0.85rem; font-weight: 700; color: var(--text);
+    margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem;
+  }
+  .phase-progress { margin-bottom: 1.5rem; }
+  .progress-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  .progress-title { font-size: 0.85rem; font-weight: 600; }
+  .progress-pct { font-size: 0.85rem; color: var(--accent); font-family: 'Space Mono', monospace; }
+  .progress-bar {
+    height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 3px; transition: width 0.5s ease;
+  }
+  .progress-meta { font-size: 0.78rem; color: var(--muted); margin-top: 0.4rem; }
+
+  .rule-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.7rem 0; border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+  .rule-row:last-child { border: none; }
+  .rule-name { color: var(--muted); }
+  .rule-val { font-family: 'Space Mono', monospace; font-weight: 600; font-size: 0.82rem; }
+  .rule-status { display: flex; align-items: center; gap: 0.4rem; font-size: 0.8rem; }
+  .dot-ok { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+  .dot-warn { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+  .activity-list { display: flex; flex-direction: column; gap: 0.8rem; }
+  .activity-item {
+    display: flex; gap: 0.8rem; align-items: flex-start;
+    font-size: 0.83rem;
+  }
+  .activity-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; flex-shrink: 0;
+  }
+  .ai-buy { background: rgba(16,185,129,0.15); color: var(--green); }
+  .ai-sell { background: rgba(239,68,68,0.15); color: var(--red); }
+  .ai-info { background: rgba(0,212,255,0.15); color: var(--accent); }
+  .activity-body { flex: 1; }
+  .activity-title { font-weight: 500; color: var(--text); margin-bottom: 0.1rem; }
+  .activity-time { color: var(--muted); font-size: 0.75rem; }
+
+  .withdraw-form { margin-top: 1rem; }
+  .withdraw-amount {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 8px; padding: 0.75rem 1rem; width: 100%;
+    color: var(--text); font-size: 1rem; font-family: 'Space Mono', monospace;
+    outline: none; margin-bottom: 0.8rem;
+  }
+  .withdraw-amount:focus { border-color: var(--accent); }
+  .withdraw-note { font-size: 0.78rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.5; }
+  .btn-withdraw {
+    width: 100%; background: var(--green); color: white; border: none;
+    padding: 0.8rem; border-radius: 8px; font-weight: 700; cursor: pointer;
+    font-size: 0.9rem; font-family: 'Space Grotesk', sans-serif;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border); padding: 3rem 2rem;
+    text-align: center; color: var(--muted); font-size: 0.82rem; line-height: 1.7;
+  }
+  footer .footer-logo { font-family: 'Space Mono', monospace; color: var(--accent); font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+    background: var(--green); color: white; padding: 0.8rem 1.4rem;
+    border-radius: 8px; font-size: 0.9rem; font-weight: 600;
+    transform: translateY(100px); opacity: 0;
+    transition: all 0.3s;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 640px) {
+    .nav-links a:not(.btn-nav) { display: none; }
+    .hero h1 { letter-spacing: -1px; }
+    .hero-stats { gap: 1.5rem; }
+    .plan-card { padding: 1.5rem; }
+  }
+
+  .badge-funded {
+    background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3);
+    color: var(--gold); padding: 0.2rem 0.6rem; border-radius: 50px; font-size: 0.7rem; font-weight: 600;
+  }
+
+  .phase-arrow {
+    text-align: center; color: var(--muted); font-size: 1.2rem; margin: 0.3rem 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Apex<span>Edge</span></div>
+  <div class="nav-links">
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('home'); setTimeout(()=>document.getElementById('how').scrollIntoView({behavior:'smooth'}),100)">How It Works</a>
+    <a href="#" onclick="showPage('home'); setTimeout(()=>document.getElementById('rules').scrollIntoView({behavior:'smooth'}),100)">Rules</a>
+    <button class="btn-nav" onclick="showPage('signin')">Sign In</button>
+  </div>
+</nav>
+
+<!-- ══════════════ HOME PAGE ══════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">🚀 Now Accepting Traders Worldwide</div>
+    <h1>Trade with <span class="hl">$1,000</span><br>— Keep 80%</h1>
+    <p>Pass our 2-phase challenge, get funded, and trade our capital. Keep 80% of every dollar you profit.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('signup')">Get Funded — $10</button>
+      <button class="btn-outline" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">Learn How</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">80%</div>
+        <div class="stat-lbl">Profit Split</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$1K</div>
+        <div class="stat-lbl">Funded Account</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$10</div>
+        <div class="stat-lbl">Challenge Fee</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">20%</div>
+        <div class="stat-lbl">Min Withdraw</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHALLENGE PLAN -->
+  <section>
+    <div class="section-label">The Challenge</div>
+    <div class="section-title">One plan. Two phases.</div>
+    <p class="section-sub">Pass both phases and receive your funded $1,000 account with an 80% profit share.</p>
+
+    <div class="challenge-wrapper">
+      <div class="plan-card">
+        <div class="plan-badge">⚡ Standard Challenge</div>
+        <div class="plan-price">Challenge Entry Fee</div>
+        <div class="plan-price-main">$10 <span>USDT</span></div>
+        <div class="plan-account">$1,000 Funded Account</div>
+
+        <div class="phases" style="margin-top:1.8rem">
+          <div class="phase-tab">
+            <h4><span class="phase-dot"></span> Phase 1 — Evaluation</h4>
+            <div class="phase-rules">
+              <div class="phase-rule">Profit Target <strong>20%</strong></div>
+              <div class="phase-rule">Max Daily DD <strong>5%</strong></div>
+              <div class="phase-rule">Max Drawdown <strong>10%</strong></div>
+              <div class="phase-rule">Min Days <strong>None</strong></div>
+            </div>
+          </div>
+          <div class="phase-arrow">↓</div>
+          <div class="phase-tab">
+            <h4><span class="phase-dot"></span> Phase 2 — Verification</h4>
+            <div class="phase-rules">
+              <div class="phase-rule">Profit Target <strong>20%</strong></div>
+              <div class="phase-rule">Max Daily DD <strong>5%</strong></div>
+              <div class="phase-rule">Max Drawdown <strong>10%</strong></div>
+              <div class="phase-rule">Min Days <strong>None</strong></div>
+            </div>
+          </div>
+          <div class="phase-arrow">↓</div>
+          <div class="phase-tab" style="border-color:rgba(245,158,11,0.4)">
+            <h4 style="color:var(--gold)"><span class="phase-dot" style="background:var(--gold)"></span> Funded Account <span class="badge-funded">LIVE</span></h4>
+            <div class="phase-rules">
+              <div class="phase-rule">Max Daily DD <strong>5%</strong></div>
+              <div class="phase-rule">Max Drawdown <strong>10%</strong></div>
+              <div class="phase-rule">Min Withdrawal <strong>20%</strong></div>
+              <div class="phase-rule">Profit Split <strong>80% You</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="plan-divider">
+
+        <div class="plan-perks">
+          <div class="perk"><span class="perk-icon">✓</span> No time limits on phases</div>
+          <div class="perk"><span class="perk-icon">✓</span> Crypto-only payments (USDT)</div>
+          <div class="perk"><span class="perk-icon">✓</span> Withdraw profits anytime after 20% min</div>
+          <div class="perk"><span class="perk-icon">✓</span> Scale-up potential for top traders</div>
+          <div class="perk"><span class="perk-icon">✓</span> Real-time dashboard tracking</div>
+        </div>
+
+        <button class="btn-purchase" onclick="showPage('signup')">Start Challenge — $10 USDT</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how" style="background:var(--bg2); max-width:100%; padding:5rem 2rem;">
+    <div style="max-width:1100px; margin:0 auto;">
+      <div class="section-label">Process</div>
+      <div class="section-title">How it works</div>
+      <div class="steps">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h3>Pay the Fee</h3>
+          <p>Send $10 USDT on Solana, BNB Chain, or Ethereum to activate your challenge account.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h3>Pass Phase 1</h3>
+          <p>Reach the 20% profit target on your $1,000 account while staying within drawdown limits.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h3>Pass Phase 2</h3>
+          <p>Repeat the process in the verification phase. Same rules — consistency is what we look for.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">04</div>
+          <h3>Get Funded</h3>
+          <p>Receive your live $1,000 funded account. Trade freely and withdraw 80% of your profits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section id="rules">
+    <div class="section-label">Rules</div>
+    <div class="section-title">Full rule breakdown</div>
+    <p class="section-sub">The same rules apply across all three stages of the program.</p>
+    <div class="rules-grid">
+      <div class="rules-card">
+        <div class="rules-card-header">📊 Phase 1 — Evaluation</div>
+        <table class="rules-table">
+          <tr><td>Account Size</td><td class="val-blue">$1,000</td></tr>
+          <tr><td>Profit Target</td><td class="val-green">20% ($200)</td></tr>
+          <tr><td>Max Daily Loss</td><td class="val-red">5% ($50)</td></tr>
+          <tr><td>Max Total Drawdown</td><td class="val-red">10% ($100)</td></tr>
+          <tr><td>Time Limit</td><td class="val-blue">Unlimited</td></tr>
+          <tr><td>Leverage</td><td class="val-blue">Up to 1:100</td></tr>
+        </table>
+      </div>
+      <div class="rules-card">
+        <div class="rules-card-header">🔍 Phase 2 — Verification</div>
+        <table class="rules-table">
+          <tr><td>Account Size</td><td class="val-blue">$1,000</td></tr>
+          <tr><td>Profit Target</td><td class="val-green">20% ($200)</td></tr>
+          <tr><td>Max Daily Loss</td><td class="val-red">5% ($50)</td></tr>
+          <tr><td>Max Total Drawdown</td><td class="val-red">10% ($100)</td></tr>
+          <tr><td>Time Limit</td><td class="val-blue">Unlimited</td></tr>
+          <tr><td>Leverage</td><td class="val-blue">Up to 1:100</td></tr>
+        </table>
+      </div>
+      <div class="rules-card">
+        <div class="rules-card-header">🏆 Funded Account</div>
+        <table class="rules-table">
+          <tr><td>Account Size</td><td class="val-blue">$1,000</td></tr>
+          <tr><td>Profit Split</td><td class="val-green">80% Trader</td></tr>
+          <tr><td>Max Daily Loss</td><td class="val-red">5% ($50)</td></tr>
+          <tr><td>Max Total Drawdown</td><td class="val-red">10% ($100)</td></tr>
+          <tr><td>Min Withdrawal</td><td class="val-gold">20% of profit</td></tr>
+          <tr><td>Withdrawal Frequency</td><td class="val-blue">Anytime</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAYMENT -->
+  <section id="payment" style="background:var(--bg2); max-width:100%; padding:5rem 2rem;">
+    <div style="max-width:700px; margin:0 auto;">
+      <div class="section-label">Payments</div>
+      <div class="section-title">Pay with Crypto</div>
+      <p class="section-sub">We accept USDT on three networks. Send exactly $10 and DM us your transaction hash to activate your account.</p>
+
+      <div class="payment-section">
+        <div class="payment-tabs">
+          <button class="ptab active" onclick="switchPay('sol',this)">Solana (SOL)</button>
+          <button class="ptab" onclick="switchPay('bnb',this)">BNB Chain / EVM</button>
+          <button class="ptab" onclick="switchPay('eth',this)">Ethereum</button>
+        </div>
+
+        <div class="payment-detail active" id="pay-sol">
+          <div class="wallet-box">
+            <div class="wallet-label">USDT on Solana — Wallet Address</div>
+            <div class="wallet-addr" id="sol-addr">4rUhJkANDYkFnQtraRfaXSh7A75XaGK1Cm5RRKecWSKB</div>
+            <button class="copy-btn" onclick="copyAddr('sol-addr')">Copy Address</button>
+          </div>
+          <div class="payment-note">⚠️ Send only USDT (SPL token) on the Solana network. Sending other tokens may result in permanent loss.</div>
+        </div>
+
+        <div class="payment-detail" id="pay-bnb">
+          <div class="wallet-box">
+            <div class="wallet-label">USDT on BNB Chain (BEP-20) — Wallet Address</div>
+            <div class="wallet-addr" id="bnb-addr">0x0cf979333fc6d4e2ac6a0ff3aa3109cb95735626</div>
+            <button class="copy-btn" onclick="copyAddr('bnb-addr')">Copy Address</button>
+          </div>
+          <div class="payment-note">⚠️ Send only USDT (BEP-20) on the BNB Smart Chain. Do not send from an exchange that uses the wrong network.</div>
+        </div>
+
+        <div class="payment-detail" id="pay-eth">
+          <div class="wallet-box">
+            <div class="wallet-label">USDT on Ethereum (ERC-20) — Wallet Address</div>
+            <div class="wallet-addr" id="eth-addr">0x0cf979333fc6d4e2ac6a0ff3aa3109cb95735626</div>
+            <button class="copy-btn" onclick="copyAddr('eth-addr')">Copy Address</button>
+          </div>
+          <div class="payment-note">⚠️ Send only USDT (ERC-20) on Ethereum mainnet. Note: ETH gas fees apply — ensure you have enough ETH for gas.</div>
+        </div>
+
+        <div style="margin-top:1.5rem; padding:1rem; background:rgba(0,212,255,0.05); border:1px solid rgba(0,212,255,0.15); border-radius:8px; font-size:0.83rem; color:var(--muted); line-height:1.6;">
+          After payment, <strong style="color:var(--text)">sign up</strong> and submit your transaction hash via the dashboard. Account activation typically takes 1–24 hours after confirmation.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Apex<span style="color:var(--text)">Edge</span> Funding</div>
+    <p>Empowering traders with real capital. Trade smart, profit together.</p>
+    <p style="margin-top:0.5rem; font-size:0.75rem; color:rgba(100,116,139,0.6)">© 2025 ApexEdge Funding. All rights reserved. Trading involves risk.</p>
+  </footer>
+</div>
+
+<!-- ══════════════ SIGN UP PAGE ══════════════ -->
+<div id="page-signup" class="page">
+  <div class="auth-page">
+    <div class="auth-box">
+      <div class="auth-logo">Apex<span>Edge</span></div>
+      <div class="auth-title">Create Account</div>
+      <div class="auth-sub">Join thousands of funded traders worldwide</div>
+
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" type="text" placeholder="Your full name" id="reg-name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" placeholder="you@email.com" id="reg-email">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="Min. 8 characters" id="reg-pass">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Country</label>
+        <input class="form-input" type="text" placeholder="Your country" id="reg-country">
+      </div>
+
+      <button class="btn-full" onclick="handleSignup()">Create Account & Pay $10</button>
+
+      <div class="divider-row">
+        <hr><span>or</span><hr>
+      </div>
+
+      <div class="auth-switch">Already have an account? <a onclick="showPage('signin')">Sign in</a></div>
+      <div style="margin-top:1rem; font-size:0.75rem; color:var(--muted); text-align:center; line-height:1.5;">By signing up you agree to our Terms of Service. After registering, complete payment via crypto to activate your challenge.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ SIGN IN PAGE ══════════════ -->
+<div id="page-signin" class="page">
+  <div class="auth-page">
+    <div class="auth-box">
+      <div class="auth-logo">Apex<span>Edge</span></div>
+      <div class="auth-title">Welcome back</div>
+      <div class="auth-sub">Sign in to your trader dashboard</div>
+
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input class="form-input" type="email" placeholder="you@email.com" id="login-email">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input class="form-input" type="password" placeholder="Your password" id="login-pass">
+      </div>
+
+      <button class="btn-full" onclick="handleSignin()">Sign In</button>
+
+      <div class="auth-switch" style="margin-top:1rem">Don't have an account? <a onclick="showPage('signup')">Sign up</a></div>
+      <div class="auth-switch" style="margin-top:0.5rem"><a onclick="showPage('home')">← Back to Home</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ DASHBOARD ══════════════ -->
+<div id="page-dashboard" class="page">
+  <div class="dashboard">
+    <div class="dash-header">
+      <h2>Good morning, <span class="welcome-name" id="dash-name">Trader</span> 👋</h2>
+      <p>Phase 1 in progress — keep going, you're on track.</p>
+      <div style="margin-top:1rem; display:flex; gap:0.8rem; flex-wrap:wrap;">
+        <span style="background:rgba(0,212,255,0.1); border:1px solid rgba(0,212,255,0.3); color:var(--accent); padding:0.3rem 0.9rem; border-radius:50px; font-size:0.78rem; font-weight:600;">📊 Phase 1 Active</span>
+        <button onclick="showPage('home')" style="background:transparent; border:1px solid var(--border); color:var(--muted); padding:0.3rem 0.9rem; border-radius:50px; font-size:0.78rem; cursor:pointer; font-family:'Space Grotesk',sans-serif;">← Home</button>
+        <button onclick="showPage('signin')" style="background:transparent; border:1px solid var(--border); color:var(--muted); padding:0.3rem 0.9rem; border-radius:50px; font-size:0.78rem; cursor:pointer; font-family:'Space Grotesk',sans-serif;">Sign Out</button>
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div class="metrics">
+      <div class="metric-card">
+        <div class="metric-label">Account Balance</div>
+        <div class="metric-val" style="color:var(--accent)">$1,084.50</div>
+        <div class="metric-change" style="color:var(--green)">▲ +$84.50 today</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Total Profit</div>
+        <div class="metric-val" style="color:var(--green)">$84.50</div>
+        <div class="metric-change" style="color:var(--muted)">8.45% of target</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Daily P&L</div>
+        <div class="metric-val" style="color:var(--green)">+$22.10</div>
+        <div class="metric-change" style="color:var(--muted)">Daily limit: $50</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Drawdown Used</div>
+        <div class="metric-val" style="color:var(--gold)">3.2%</div>
+        <div class="metric-change" style="color:var(--muted)">Max allowed: 10%</div>
+      </div>
+    </div>
+
+    <!-- MAIN GRID -->
+    <div class="dash-grid">
+      <div>
+        <!-- Progress -->
+        <div class="dash-card" style="margin-bottom:1.5rem;">
+          <div class="dash-card-title">📈 Challenge Progress</div>
+
+          <div class="phase-progress">
+            <div class="progress-header">
+              <span class="progress-title">Phase 1 Profit Target (20%)</span>
+              <span class="progress-pct">8.45%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" style="width:42%"></div></div>
+            <div class="progress-meta">$84.50 earned of $200.00 target</div>
+          </div>
+
+          <div class="phase-progress">
+            <div class="progress-header">
+              <span class="progress-title">Max Drawdown Used</span>
+              <span class="progress-pct" style="color:var(--gold)">3.2%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:32%; background:linear-gradient(90deg,var(--green),var(--gold))"></div>
+            </div>
+            <div class="progress-meta">$32.00 used of $100.00 max</div>
+          </div>
+
+          <div class="phase-progress">
+            <div class="progress-header">
+              <span class="progress-title">Daily Loss Limit</span>
+              <span class="progress-pct" style="color:var(--green)">44.2%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width:44%; background:linear-gradient(90deg,var(--accent),var(--green))"></div>
+            </div>
+            <div class="progress-meta">$22.10 used of $50.00 daily limit</div>
+          </div>
+        </div>
+
+        <!-- Rules Status -->
+        <div class="dash-card">
+          <div class="dash-card-title">✅ Rules Status</div>
+          <div class="rule-row">
+            <span class="rule-name">Profit Target</span>
+            <span class="rule-val val-blue">$200.00</span>
+            <span class="rule-status"><span class="dot-warn"></span> In Progress</span>
+          </div>
+          <div class="rule-row">
+            <span class="rule-name">Max Daily Drawdown</span>
+            <span class="rule-val val-red">5% / $50</span>
+            <span class="rule-status"><span class="dot-ok"></span> Safe</span>
+          </div>
+          <div class="rule-row">
+            <span class="rule-name">Max Total Drawdown</span>
+            <span class="rule-val val-red">10% / $100</span>
+            <span class="rule-status"><span class="dot-ok"></span> Safe</span>
+          </div>
+          <div class="rule-row">
+            <span class="rule-name">Current Equity</span>
+            <span class="rule-val val-green">$1,084.50</span>
+            <span class="rule-status"><span class="dot-ok"></span> Good</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <!-- Activity -->
+        <div class="dash-card" style="margin-bottom:1.5rem;">
+          <div class="dash-card-title">⚡ Recent Activity</div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-icon ai-buy">▲</div>
+              <div class="activity-body">
+                <div class="activity-title">BUY EURUSD +$22.10</div>
+                <div class="activity-time">Today, 09:42 AM</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon ai-sell">▼</div>
+              <div class="activity-body">
+                <div class="activity-title">SELL GBPUSD +$31.40</div>
+                <div class="activity-time">Yesterday, 2:15 PM</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon ai-buy">▲</div>
+              <div class="activity-body">
+                <div class="activity-title">BUY XAUUSD +$31.00</div>
+                <div class="activity-time">Jun 12, 11:00 AM</div>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon ai-info">✦</div>
+              <div class="activity-body">
+                <div class="activity-title">Account Activated</div>
+                <div class="activity-time">Jun 10, 08:00 AM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Withdrawal -->
+        <div class="dash-card">
+          <div class="dash-card-title">💰 Withdrawal</div>
+          <div style="font-size:0.8rem; color:var(--muted); margin-bottom:1rem; line-height:1.5;">
+            Available after reaching funded stage. Minimum withdrawal is <strong style="color:var(--gold)">20% of profit</strong>. You keep 80% of all profits.
+          </div>
+          <div class="rule-row" style="padding:0.5rem 0;">
+            <span class="rule-name">Your 80% share</span>
+            <span class="rule-val val-green">$67.60</span>
+          </div>
+          <div class="rule-row" style="padding:0.5rem 0;">
+            <span class="rule-name">Min withdrawal</span>
+            <span class="rule-val val-gold">$13.52</span>
+          </div>
+          <div class="withdraw-form">
+            <input class="withdraw-amount" type="number" placeholder="Enter amount (USDT)" disabled>
+            <div class="withdraw-note">⚠️ Withdrawals unlock after completing both phases and reaching the funded stage.</div>
+            <button class="btn-withdraw" disabled style="opacity:0.4; cursor:not-allowed;">Unlock After Funding</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Copied!</div>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function switchPay(net, btn) {
+    document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.payment-detail').forEach(d => d.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('pay-' + net).classList.add('active');
+  }
+
+  function copyAddr(id) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const t = document.getElementById('toast');
+      t.textContent = '✓ Address copied!';
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2000);
+    });
+  }
+
+  function handleSignup() {
+    const name = document.getElementById('reg-name').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const pass = document.getElementById('reg-pass').value.trim();
+    if (!name || !email || !pass) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    localStorage.setItem('ae_name', name);
+    document.getElementById('dash-name').textContent = name.split(' ')[0];
+    showPage('dashboard');
+  }
+
+  function handleSignin() {
+    const email = document.getElementById('login-email').value.trim();
+    const pass = document.getElementById('login-pass').value.trim();
+    if (!email || !pass) {
+      alert('Please enter your email and password.');
+      return;
+    }
+    const name = localStorage.getItem('ae_name') || 'Trader';
+    document.getElementById('dash-name').textContent = name.split(' ')[0];
+    showPage('dashboard');
+  }
+
+  // Restore name if returning
+  const saved = localStorage.getItem('ae_name');
+  if (saved) document.getElementById('dash-name').textContent = saved.split(' ')[0];
+</script>
+</body>
+</html>

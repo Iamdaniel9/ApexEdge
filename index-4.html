@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ApexEdge Funding | Trade With Our Capital</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+:root{--bg:#080c14;--bg2:#0d1320;--bg3:#111827;--border:#1e2d45;--accent:#00d4ff;--accent2:#7c3aed;--gold:#f59e0b;--green:#10b981;--red:#ef4444;--text:#e2e8f0;--muted:#64748b;--card:#0d1825}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,12,20,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Space Mono',monospace;font-size:1.2rem;font-weight:700;color:var(--accent)}
+.logo span{color:var(--text)}
+.nav-right{display:flex;gap:1rem;align-items:center}
+.nav-link{color:var(--muted);text-decoration:none;font-size:0.9rem;cursor:pointer;background:none;border:none;font-family:'Space Grotesk',sans-serif}
+.nav-link:hover{color:var(--text)}
+.btn-nav{background:var(--accent);color:var(--bg);padding:0.5rem 1.2rem;border-radius:6px;font-weight:700;font-size:0.85rem;cursor:pointer;border:none;font-family:'Space Grotesk',sans-serif}
+.page{display:none;padding-top:64px;min-height:100vh}
+.page.active{display:block}
+.hero{min-height:calc(100vh - 64px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(0,212,255,0.12) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 80%,rgba(124,58,237,0.1) 0%,transparent 60%),var(--bg);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:60px 60px}
+.hero-badge{background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:var(--accent);padding:0.35rem 1rem;border-radius:50px;font-size:0.8rem;font-weight:500;letter-spacing:0.05em;margin-bottom:1.5rem;display:inline-block;position:relative}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:700;line-height:1.1;letter-spacing:-2px;margin-bottom:1.5rem;position:relative}
+.hl{color:var(--accent)}
+.hero p{font-size:1.15rem;color:var(--muted);max-width:560px;line-height:1.7;margin-bottom:2.5rem;position:relative}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative}
+.btn-primary{background:var(--accent);color:var(--bg);padding:0.85rem 2rem;border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;border:none;transition:all 0.2s;box-shadow:0 0 24px rgba(0,212,255,0.3);font-family:'Space Grotesk',sans-serif}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(0,212,255,0.5)}
+.btn-outline{background:transparent;color:var(--text);padding:0.85rem 2rem;border-radius:8px;font-weight:600;font-size:1rem;cursor:pointer;border:1px solid var(--border);transition:all 0.2s;font-family:'Space Grotesk',sans-serif}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.hero-stats{display:flex;gap:3rem;margin-top:4rem;flex-wrap:wrap;justify-content:center;position:relative}
+.stat{text-align:center}
+.stat-num{font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:var(--accent)}
+.stat-lbl{font-size:0.8rem;color:var(--muted);margin-top:0.2rem}
+.section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
+.section-label{font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:0.8rem;font-family:'Space Mono',monospace}
+.section-title{font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;letter-spacing:-1px;margin-bottom:1rem}
+.section-sub{color:var(--muted);max-width:500px;line-height:1.7}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:3rem}
+.step-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem}
+.step-num{font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:var(--accent);opacity:0.4;line-height:1;margin-bottom:1rem}
+.step-card h3{font-size:1rem;font-weight:600;margin-bottom:0.5rem}
+.step-card p{font-size:0.85rem;color:var(--muted);line-height:1.6}
+.rules-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
+.rules-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.rules-card-header{padding:1rem 1.5rem;background:var(--bg3);border-bottom:1px solid var(--border);font-size:0.85rem;font-weight:700;color:var(--accent)}
+.rules-table{width:100%;border-collapse:collapse}
+.rules-table tr{border-bottom:1px solid var(--border)}
+.rules-table tr:last-child{border:none}
+.rules-table td{padding:0.8rem 1.5rem;font-size:0.85rem}
+.rules-table td:first-child{color:var(--muted)}
+.rules-table td:last-child{font-weight:600;text-align:right;font-family:'Space Mono',monospace;font-size:0.8rem}
+.val-green{color:#10b981}.val-red{color:#ef4444}.val-gold{color:#f59e0b}.val-blue{color:var(--accent)}
+.plan-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2.5rem;max-width:480px;margin:2rem auto 0;position:relative;overflow:hidden}
+.plan-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.plan-badge{display:inline-block;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:var(--accent);padding:0.25rem 0.8rem;border-radius:50px;font-size:0.75rem;font-weight:600;margin-bottom:1.2rem}
+.plan-price-main{font-family:'Space Mono',monospace;font-size:3rem;font-weight:700;color:var(--text);line-height:1}
+.plan-price-main span{font-size:1.2rem;color:var(--muted)}
+.plan-account{font-size:1rem;color:var(--gold);font-weight:600;margin-top:0.5rem}
+.phases{margin:1.5rem 0;display:flex;flex-direction:column;gap:0.8rem}
+.phase-tab{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem}
+.phase-tab h4{font-size:0.85rem;font-weight:600;color:var(--accent);margin-bottom:0.6rem;display:flex;align-items:center;gap:0.5rem}
+.pdot{width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.phase-rules{display:grid;grid-template-columns:1fr 1fr;gap:0.4rem}
+.phase-rule{font-size:0.8rem;color:var(--muted)}
+.phase-rule strong{color:var(--text)}
+.plan-divider{border:none;border-top:1px solid var(--border);margin:1.2rem 0}
+.plan-perks{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.5rem}
+.perk{display:flex;align-items:center;gap:0.7rem;font-size:0.85rem;color:var(--muted)}
+.perk-icon{color:#10b981}
+.phase-arrow{text-align:center;color:var(--muted);font-size:1rem;margin:0.1rem 0}
+.badge-funded{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);color:var(--gold);padding:0.2rem 0.5rem;border-radius:50px;font-size:0.7rem;font-weight:600}
+.center-page{min-height:calc(100vh - 64px);display:flex;align-items:center;justify-content:center;padding:2rem;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(124,58,237,0.12) 0%,transparent 60%),var(--bg)}
+.pay-box{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem;width:100%;max-width:500px}
+.box-title{font-size:1.5rem;font-weight:700;margin-bottom:0.3rem;text-align:center}
+.box-sub{color:var(--muted);font-size:0.88rem;text-align:center;margin-bottom:2rem;line-height:1.5}
+.pay-amount-box{background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(124,58,237,0.1));border:1px solid rgba(0,212,255,0.3);border-radius:12px;padding:1.5rem;text-align:center;margin-bottom:1.8rem}
+.pay-amount-val{font-family:'Space Mono',monospace;font-size:3rem;font-weight:700;color:var(--accent);line-height:1}
+.pay-amount-unit{font-size:0.9rem;color:var(--muted)}
+.pay-amount-desc{font-size:0.82rem;color:var(--gold);margin-top:0.5rem;font-weight:500}
+.pay-method-label{font-size:0.8rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.8rem}
+.pay-methods{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.5rem}
+.method-card{background:var(--bg3);border:2px solid var(--border);border-radius:12px;padding:1.2rem;cursor:pointer;transition:all 0.2s;text-align:center}
+.method-card:hover{border-color:var(--accent)}
+.method-card.active{border-color:var(--accent);background:rgba(0,212,255,0.08)}
+.method-icon{font-size:1.8rem;margin-bottom:0.5rem}
+.method-name{font-size:0.88rem;font-weight:700;color:var(--text)}
+.method-desc{font-size:0.75rem;color:var(--muted);margin-top:0.2rem}
+.payment-panel{display:none}
+.payment-panel.active{display:block}
+.card-pay-btn{width:100%;background:linear-gradient(135deg,#10b981,#059669);color:white;border:none;padding:1.1rem;border-radius:12px;font-size:1.05rem;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.6rem;margin-top:0.5rem}
+.card-pay-btn:hover{opacity:0.9;transform:translateY(-1px)}
+.card-icons{display:flex;gap:0.5rem;justify-content:center;margin-bottom:1rem;flex-wrap:wrap}
+.card-icon{background:white;border-radius:4px;padding:0.25rem 0.6rem;font-size:0.72rem;font-weight:800}
+.card-icon.visa{color:#1a1aff}.card-icon.mc{color:#eb001b}.card-icon.verve{color:#00aa00}
+.secure-note{display:flex;align-items:center;justify-content:center;gap:0.4rem;font-size:0.75rem;color:var(--muted);margin-top:0.8rem}
+.network-label{font-size:0.8rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.8rem}
+.network-tabs{display:flex;gap:0.5rem;margin-bottom:1.2rem}
+.ntab{flex:1;padding:0.7rem;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:0.82rem;cursor:pointer;transition:all 0.2s;font-family:'Space Grotesk',sans-serif;font-weight:500;text-align:center}
+.ntab.active{background:rgba(0,212,255,0.1);border-color:var(--accent);color:var(--accent)}
+.wallet-panel{display:none}.wallet-panel.active{display:block}
+.wallet-box{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1.2rem 1.5rem;margin-bottom:0.8rem}
+.wallet-lbl{font-size:0.73rem;color:var(--muted);margin-bottom:0.4rem;font-weight:500}
+.wallet-addr{font-family:'Space Mono',monospace;font-size:0.78rem;color:var(--accent);word-break:break-all;line-height:1.6}
+.copy-btn{background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:var(--accent);padding:0.45rem 1rem;border-radius:6px;font-size:0.8rem;cursor:pointer;font-family:'Space Grotesk',sans-serif;margin-top:0.6rem;display:inline-block}
+.copy-btn:hover{background:rgba(0,212,255,0.2)}
+.pay-warn{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:8px;padding:0.75rem 1rem;font-size:0.8rem;color:#fbbf24;line-height:1.5;margin-bottom:1.2rem}
+.divider{border:none;border-top:1px solid var(--border);margin:1.5rem 0}
+.form-group{margin-bottom:1rem}
+.form-label{font-size:0.82rem;color:var(--muted);margin-bottom:0.4rem;display:block;font-weight:500}
+.form-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.9rem;font-family:'Space Grotesk',sans-serif;transition:border-color 0.2s;outline:none}
+.form-input:focus{border-color:var(--accent)}
+.form-input::placeholder{color:var(--muted)}
+.tx-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;color:var(--text);font-size:0.82rem;font-family:'Space Mono',monospace;transition:border-color 0.2s;outline:none}
+.tx-input:focus{border-color:var(--accent)}
+.tx-input::placeholder{color:var(--muted);font-family:'Space Grotesk',sans-serif;font-size:0.85rem}
+.btn-full{width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;border:none;padding:1rem;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:opacity 0.2s;margin-top:0.5rem}
+.btn-full:hover{opacity:0.9}
+.back-link{text-align:center;margin-top:1.2rem;font-size:0.85rem;color:var(--muted)}
+.back-link a{color:var(--accent);cursor:pointer}
+.pulse-ring{display:inline-block;width:56px;height:56px;border-radius:50%;border:3px solid var(--gold);border-top-color:transparent;animation:spin 1.2s linear infinite;margin-bottom:1.2rem}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sstep{display:flex;align-items:flex-start;gap:0.8rem;padding:0.7rem 0;border-bottom:1px solid var(--border);font-size:0.85rem}
+.sstep:last-child{border:none}
+.sstep-icon{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;flex-shrink:0;margin-top:2px}
+.s-done{background:rgba(16,185,129,0.15);color:#10b981}
+.s-active{background:rgba(245,158,11,0.15);color:#f59e0b}
+.s-wait{background:rgba(100,116,139,0.15);color:var(--muted)}
+
+/* ADMIN */
+.admin-wrap{padding:2rem;max-width:1000px;margin:0 auto}
+.admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.admin-title{font-size:1.5rem;font-weight:700}
+.admin-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-bottom:2rem}
+.admin-stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.2rem;text-align:center}
+.admin-stat-num{font-family:'Space Mono',monospace;font-size:1.8rem;font-weight:700;color:var(--accent)}
+.admin-stat-lbl{font-size:0.78rem;color:var(--muted);margin-top:0.2rem}
+.traders-table{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.table-header{display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1.5fr;gap:1rem;padding:1rem 1.5rem;background:var(--bg3);border-bottom:1px solid var(--border);font-size:0.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
+.table-row{display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1.5fr;gap:1rem;padding:1rem 1.5rem;border-bottom:1px solid var(--border);align-items:center;font-size:0.85rem}
+.table-row:last-child{border:none}
+.table-row:hover{background:rgba(255,255,255,0.02)}
+.status-badge{padding:0.25rem 0.7rem;border-radius:50px;font-size:0.72rem;font-weight:700;display:inline-block}
+.status-pending{background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3)}
+.status-approved{background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3)}
+.status-rejected{background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.3)}
+.approve-btn{background:var(--green);color:white;border:none;padding:0.4rem 0.9rem;border-radius:6px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif}
+.reject-btn{background:transparent;color:var(--red);border:1px solid var(--red);padding:0.4rem 0.9rem;border-radius:6px;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif;margin-left:0.4rem}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:none;align-items:center;justify-content:center;padding:2rem}
+.modal-overlay.active{display:flex}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:2rem;width:100%;max-width:440px}
+.modal-title{font-size:1.2rem;font-weight:700;margin-bottom:0.4rem}
+.modal-sub{font-size:0.85rem;color:var(--muted);margin-bottom:1.5rem}
+.modal-btns{display:flex;gap:0.8rem;margin-top:1.5rem}
+.modal-confirm{flex:1;background:var(--green);color:white;border:none;padding:0.85rem;border-radius:8px;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif}
+.modal-cancel{flex:1;background:transparent;color:var(--muted);border:1px solid var(--border);padding:0.85rem;border-radius:8px;font-weight:600;cursor:pointer;font-family:'Space Grotesk',sans-serif}
+
+/* DASHBOARD */
+.dashboard{padding:2rem;max-width:1100px;margin:0 auto}
+.dash-header{margin-bottom:2rem}
+.dash-header h2{font-size:1.6rem;font-weight:700;margin-bottom:0.3rem}
+.dash-tags{margin-top:1rem;display:flex;gap:0.8rem;flex-wrap:wrap;align-items:center}
+.tag{background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);color:var(--accent);padding:0.3rem 0.9rem;border-radius:50px;font-size:0.78rem;font-weight:600}
+.tag-gold{background:rgba(245,158,11,0.1);border-color:rgba(245,158,11,0.3);color:var(--gold)}
+.tag-green{background:rgba(16,185,129,0.1);border-color:rgba(16,185,129,0.3);color:#10b981}
+.btn-sm{background:transparent;border:1px solid var(--border);color:var(--muted);padding:0.3rem 0.9rem;border-radius:50px;font-size:0.78rem;cursor:pointer;font-family:'Space Grotesk',sans-serif}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:1.5rem}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.3rem}
+.metric-label{font-size:0.75rem;color:var(--muted);margin-bottom:0.5rem;font-weight:500;text-transform:uppercase;letter-spacing:0.05em}
+.metric-val{font-family:'Space Mono',monospace;font-size:1.6rem;font-weight:700}
+.metric-change{font-size:0.78rem;margin-top:0.3rem}
+.dash-grid{display:grid;grid-template-columns:2fr 1fr;gap:1.5rem}
+@media(max-width:768px){.dash-grid{grid-template-columns:1fr}.table-header,.table-row{grid-template-columns:1fr 1fr;font-size:0.75rem}.table-header div:nth-child(3),.table-header div:nth-child(4),.table-row div:nth-child(3),.table-row div:nth-child(4){display:none}}
+.dash-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem}
+.dash-card-title{font-size:0.85rem;font-weight:700;margin-bottom:1.2rem}
+.phase-progress{margin-bottom:1.3rem}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem}
+.progress-title{font-size:0.83rem;font-weight:600}
+.progress-pct{font-size:0.83rem;color:var(--accent);font-family:'Space Mono',monospace}
+.progress-bar{height:6px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px}
+.progress-meta{font-size:0.75rem;color:var(--muted);margin-top:0.3rem}
+.rule-row{display:flex;justify-content:space-between;align-items:center;padding:0.65rem 0;border-bottom:1px solid var(--border);font-size:0.83rem}
+.rule-row:last-child{border:none}
+.rule-name{color:var(--muted)}
+.rule-val{font-family:'Space Mono',monospace;font-weight:600;font-size:0.78rem}
+.rule-status{display:flex;align-items:center;gap:0.4rem;font-size:0.78rem}
+.dot-ok{width:6px;height:6px;border-radius:50%;background:#10b981}
+.dot-warn{width:6px;height:6px;border-radius:50%;background:#f59e0b}
+.activity-list{display:flex;flex-direction:column;gap:0.8rem}
+.activity-item{display:flex;gap:0.8rem;align-items:flex-start;font-size:0.83rem}
+.activity-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;flex-shrink:0}
+.ai-buy{background:rgba(16,185,129,0.15);color:#10b981}
+.ai-sell{background:rgba(239,68,68,0.15);color:#ef4444}
+.ai-info{background:rgba(0,212,255,0.15);color:var(--accent)}
+.activity-title{font-weight:500;color:var(--text);margin-bottom:0.1rem}
+.activity-time{color:var(--muted);font-size:0.75rem}
+.acct-info-box{background:var(--bg3);border:1px solid rgba(16,185,129,0.3);border-radius:10px;padding:1.2rem;margin-bottom:1rem}
+.acct-info-row{display:flex;justify-content:space-between;padding:0.4rem 0;font-size:0.83rem;border-bottom:1px solid var(--border)}
+.acct-info-row:last-child{border:none}
+.acct-info-key{color:var(--muted)}
+.acct-info-val{font-family:'Space Mono',monospace;color:var(--accent);font-size:0.8rem;font-weight:600}
+footer{border-top:1px solid var(--border);padding:3rem 2rem;text-align:center;color:var(--muted);font-size:0.82rem;line-height:1.7}
+.footer-logo{font-family:'Space Mono',monospace;color:var(--accent);font-size:1rem;font-weight:700;margin-bottom:0.5rem}
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:999;background:#10b981;color:white;padding:0.8rem 1.4rem;border-radius:8px;font-size:0.9rem;font-weight:600;transform:translateY(100px);opacity:0;transition:all 0.3s}
+.toast.show{transform:translateY(0);opacity:1}
+.empty-state{text-align:center;padding:3rem;color:var(--muted);font-size:0.9rem}
+.loading{text-align:center;padding:2rem;color:var(--muted)}
+@media(max-width:640px){.nav-link{display:none}.hero h1{letter-spacing:-1px}.hero-stats{gap:1.5rem}.plan-card,.pay-box{padding:1.5rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Apex<span>Edge</span></div>
+  <div class="nav-right">
+    <button class="nav-link" onclick="showPage('home')">Home</button>
+    <button class="nav-link" onclick="goRules()">Rules</button>
+    <button class="btn-nav" onclick="showPage('signin')">Sign In</button>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-badge">🚀 Now Accepting Traders Worldwide</div>
+    <h1>Trade with <span class="hl">$1,000</span><br>— Keep 80%</h1>
+    <p>Pass our 2-phase challenge, get funded, and trade our capital. Keep 80% of every dollar you profit.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('pay')">Get Funded — Pay $10</button>
+      <button class="btn-outline" onclick="goRules()">See Rules</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">80%</div><div class="stat-lbl">Profit Split</div></div>
+      <div class="stat"><div class="stat-num">$1K</div><div class="stat-lbl">Funded Account</div></div>
+      <div class="stat"><div class="stat-num">$10</div><div class="stat-lbl">Challenge Fee</div></div>
+      <div class="stat"><div class="stat-num">20%</div><div class="stat-lbl">Min Withdraw</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">The Challenge</div>
+    <div class="section-title">One plan. Two phases. Real capital.</div>
+    <p class="section-sub">Pay $10 once, pass both phases, trade a live $1,000 account and keep 80% of everything you earn.</p>
+    <div class="plan-card">
+      <div class="plan-badge">⚡ Standard Challenge</div>
+      <div style="font-size:0.85rem;color:var(--muted)">Entry Fee</div>
+      <div class="plan-price-main">$10 <span>USD</span></div>
+      <div class="plan-account">→ $1,000 Funded Account</div>
+      <div class="phases">
+        <div class="phase-tab">
+          <h4><span class="pdot"></span>Phase 1 — Evaluation</h4>
+          <div class="phase-rules">
+            <div class="phase-rule">Profit Target <strong>20%</strong></div>
+            <div class="phase-rule">Max Daily DD <strong>5%</strong></div>
+            <div class="phase-rule">Max Drawdown <strong>10%</strong></div>
+            <div class="phase-rule">Time Limit <strong>None</strong></div>
+          </div>
+        </div>
+        <div class="phase-arrow">↓</div>
+        <div class="phase-tab">
+          <h4><span class="pdot"></span>Phase 2 — Verification</h4>
+          <div class="phase-rules">
+            <div class="phase-rule">Profit Target <strong>20%</strong></div>
+            <div class="phase-rule">Max Daily DD <strong>5%</strong></div>
+            <div class="phase-rule">Max Drawdown <strong>10%</strong></div>
+            <div class="phase-rule">Time Limit <strong>None</strong></div>
+          </div>
+        </div>
+        <div class="phase-arrow">↓</div>
+        <div class="phase-tab" style="border-color:rgba(245,158,11,0.4)">
+          <h4 style="color:var(--gold)"><span class="pdot" style="background:var(--gold)"></span>Funded Account <span class="badge-funded">LIVE</span></h4>
+          <div class="phase-rules">
+            <div class="phase-rule">Max Daily DD <strong>5%</strong></div>
+            <div class="phase-rule">Max Drawdown <strong>10%</strong></div>
+            <div class="phase-rule">Min Withdrawal <strong>20%</strong></div>
+            <div class="phase-rule">Profit Split <strong>80% You</strong></div>
+          </div>
+        </div>
+      </div>
+      <hr class="plan-divider">
+      <div class="plan-perks">
+        <div class="perk"><span class="perk-icon">✓</span>Pay by card or crypto — your choice</div>
+        <div class="perk"><span class="perk-icon">✓</span>No time limits on either phase</div>
+        <div class="perk"><span class="perk-icon">✓</span>Manual approval — 100% verified accounts</div>
+        <div class="perk"><span class="perk-icon">✓</span>Withdraw profits anytime (20% minimum)</div>
+      </div>
+      <button class="btn-primary" style="width:100%;padding:1rem" onclick="showPage('pay')">Start Now — Pay $10</button>
+    </div>
+  </div>
+
+  <div style="background:var(--bg2);padding:5rem 2rem">
+    <div style="max-width:1100px;margin:0 auto">
+      <div class="section-label">Process</div>
+      <div class="section-title">How it works</div>
+      <div class="steps">
+        <div class="step-card"><div class="step-num">01</div><h3>Pay $10</h3><p>Pay instantly by card (Visa/Mastercard/Verve) or crypto (USDT). Fast and secure.</p></div>
+        <div class="step-card"><div class="step-num">02</div><h3>Submit Details</h3><p>Enter your name and email. Our team manually reviews and approves your account.</p></div>
+        <div class="step-card"><div class="step-num">03</div><h3>Get Your Account</h3><p>Once approved you receive your Exness demo login details via email within 24 hours.</p></div>
+        <div class="step-card"><div class="step-num">04</div><h3>Trade & Get Funded</h3><p>Pass both phases and receive your live $1,000 funded account with 80% profit split.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="rules-section">
+    <div class="section-label">Rules</div>
+    <div class="section-title">Full rule breakdown</div>
+    <p class="section-sub">Same rules apply across all three stages.</p>
+    <div class="rules-grid">
+      <div class="rules-card">
+        <div class="rules-card-header">📊 Phase 1 — Evaluation</div>
+        <table class="rules-table">
+          <tr><td>Account Size</td><td class="val-blue">$1,000</td></tr>
+          <tr><td>Profit Target</td><td class="val-green">20% ($200)</td></tr>
+          <tr><td>Max Daily Loss</td><td class="val-red">5% ($50)</td></tr>
+          <tr><td>Max Total Drawdown</td><td class="val-red">10% ($100)</td></tr>
+          <tr><td>Time Limit</td><td class="val-blue">Unlimited</td></tr>
+          <tr><td>Leverage</td><td class="val-blue">Up to 1:100</td></tr>
+        </table>
+      </div>
+      <div class="rules-card">
+        <div class="rules-card-header">🔍 Phase 2 — Verification</div>
+        <table class="rules-table">
+          <tr><td>Account Size</td><td class="val-blue">$1,000</td></tr>
+          <tr><td>Profit Target</td><td class="val-green">20% ($200)</td></tr>
+          <tr><td>Max Daily Loss</td><td class="val-red">5% ($50)</td></tr>
+          <tr><td>Max Total Drawdown</td><td class="val-red">10% ($100)</td></tr>
+          <tr><td>Time Limit</td><td class="val-blue">Unlimited</td></tr>
+          <tr><td>Leverage</td><td class="val-blue">Up to 1:100</td></tr>
+        </table>
+      </div>
+      <div class="rules-card">
+        <div class="rules-card-header">🏆 Funded Account</div>
+        <table class="rules-table">
+          <tr><td>Account Size</td><td class="val-blue">$1,000</td></tr>
+          <tr><td>Profit Split</td><td class="val-green">80% Trader</td></tr>
+          <tr><td>Max Daily Loss</td><td class="val-red">5% ($50)</td></tr>
+          <tr><td>Max Total Drawdown</td><td class="val-red">10% ($100)</td></tr>
+          <tr><td>Min Withdrawal</td><td class="val-gold">20% of profit</td></tr>
+          <tr><td>Withdrawal Frequency</td><td class="val-blue">Anytime</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Apex<span style="color:var(--text)">Edge</span> Funding</div>
+    <p>Empowering traders with real capital. Trade smart, profit together.</p>
+    <p style="margin-top:0.5rem;font-size:0.75rem;color:rgba(100,116,139,0.5)">© 2025 ApexEdge Funding. All rights reserved. Trading involves significant risk.</p>
+  </footer>
+</div>
+
+<!-- PAY PAGE -->
+<div id="page-pay" class="page">
+  <div class="center-page">
+    <div class="pay-box">
+      <div class="box-title">💳 Pay to Get Started</div>
+      <div class="box-sub">Choose how you want to pay. Once confirmed, we'll approve your $1,000 challenge account within 24 hours.</div>
+      <div class="pay-amount-box">
+        <div style="font-size:0.8rem;color:var(--muted);margin-bottom:0.3rem">Amount</div>
+        <div class="pay-amount-val">$10</div>
+        <div class="pay-amount-unit">USD</div>
+        <div class="pay-amount-desc">Unlocks your $1,000 Challenge Account</div>
+      </div>
+      <div class="pay-method-label">Choose Payment Method</div>
+      <div class="pay-methods">
+        <div class="method-card active" onclick="selectMethod('card',this)">
+          <div class="method-icon">💳</div>
+          <div class="method-name">Card</div>
+          <div class="method-desc">Visa / Mastercard / Verve</div>
+        </div>
+        <div class="method-card" onclick="selectMethod('crypto',this)">
+          <div class="method-icon">🔐</div>
+          <div class="method-name">Crypto</div>
+          <div class="method-desc">USDT / SOL / BNB</div>
+        </div>
+      </div>
+
+      <!-- CARD -->
+      <div class="payment-panel active" id="panel-card">
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" type="text" placeholder="Your full name" id="card-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="you@email.com" id="card-email">
+        </div>
+        <div class="card-icons">
+          <span class="card-icon visa">VISA</span>
+          <span class="card-icon mc">MC</span>
+          <span class="card-icon verve">VERVE</span>
+        </div>
+        <button class="card-pay-btn" onclick="payByCard()">🔒 Pay with Card Now</button>
+        <div class="secure-note">🔒 Secured by Paystack — 256-bit SSL encryption</div>
+      </div>
+
+      <!-- CRYPTO -->
+      <div class="payment-panel" id="panel-crypto">
+        <div class="network-label">Choose Network</div>
+        <div class="network-tabs">
+          <button class="ntab active" onclick="switchNet('sol',this)">🟣 Solana</button>
+          <button class="ntab" onclick="switchNet('bnb',this)">🟡 BNB</button>
+          <button class="ntab" onclick="switchNet('eth',this)">🔷 ETH</button>
+        </div>
+        <div class="wallet-panel active" id="net-sol">
+          <div class="wallet-box">
+            <div class="wallet-lbl">USDT (SPL Token) — Solana Network</div>
+            <div class="wallet-addr" id="addr-sol">4rUhJkANDYkFnQtraRfaXSh7A75XaGK1Cm5RRKecWSKB</div>
+            <button class="copy-btn" onclick="copyAddr('addr-sol')">📋 Copy Address</button>
+          </div>
+          <div class="pay-warn">⚠️ Send USDT (SPL) on Solana only.</div>
+        </div>
+        <div class="wallet-panel" id="net-bnb">
+          <div class="wallet-box">
+            <div class="wallet-lbl">USDT (BEP-20) — BNB Smart Chain</div>
+            <div class="wallet-addr" id="addr-bnb">0x0cf979333fc6d4e2ac6a0ff3aa3109cb95735626</div>
+            <button class="copy-btn" onclick="copyAddr('addr-bnb')">📋 Copy Address</button>
+          </div>
+          <div class="pay-warn">⚠️ Send USDT (BEP-20) on BNB Chain only.</div>
+        </div>
+        <div class="wallet-panel" id="net-eth">
+          <div class="wallet-box">
+            <div class="wallet-lbl">USDT (ERC-20) — Ethereum Mainnet</div>
+            <div class="wallet-addr" id="addr-eth">0x0cf979333fc6d4e2ac6a0ff3aa3109cb95735626</div>
+            <button class="copy-btn" onclick="copyAddr('addr-eth')">📋 Copy Address</button>
+          </div>
+          <div class="pay-warn">⚠️ Send USDT (ERC-20) on Ethereum only.</div>
+        </div>
+        <hr class="divider">
+        <div style="font-size:0.88rem;font-weight:600;color:var(--text);margin-bottom:1rem">After paying, fill in your details:</div>
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" type="text" placeholder="Your full name" id="p-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" placeholder="you@email.com" id="p-email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Transaction Hash</label>
+          <input class="tx-input" type="text" placeholder="Paste your tx hash here..." id="p-txhash">
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:0.4rem">Find this in your wallet after sending</div>
+        </div>
+        <button class="btn-full" onclick="submitCrypto()">✅ I've Made Payment</button>
+      </div>
+      <div class="back-link"><a onclick="showPage('home')">← Back to Home</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- PENDING -->
+<div id="page-pending" class="page">
+  <div class="center-page">
+    <div class="pay-box" style="text-align:center">
+      <div class="pulse-ring"></div>
+      <div class="box-title">Payment Submitted! 🎉</div>
+      <div class="box-sub">Your payment is being reviewed. Once approved you'll receive an email with your Exness demo account login details.</div>
+      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.8rem 1rem;margin:1.2rem 0;text-align:left">
+        <div style="font-size:0.73rem;color:var(--muted);margin-bottom:0.3rem">Reference</div>
+        <div style="font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--accent);word-break:break-all" id="display-txhash">—</div>
+      </div>
+      <div style="text-align:left;margin:1.2rem 0">
+        <div class="sstep"><div class="sstep-icon s-done">✓</div><div><strong>Payment Submitted</strong><div style="font-size:0.78rem;color:var(--muted)">Your details have been received</div></div></div>
+        <div class="sstep"><div class="sstep-icon s-active">⏳</div><div><strong>Awaiting Approval</strong><div style="font-size:0.78rem;color:var(--muted)">ApexEdge team is verifying your payment</div></div></div>
+        <div class="sstep"><div class="sstep-icon s-wait">📧</div><div><strong>Account Details Sent</strong><div style="font-size:0.78rem;color:var(--muted)">You'll receive your Exness login via email</div></div></div>
+        <div class="sstep"><div class="sstep-icon s-wait">🚀</div><div><strong>Start Trading</strong><div style="font-size:0.78rem;color:var(--muted)">Log into Exness and begin your challenge</div></div></div>
+      </div>
+      <div style="background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:8px;padding:0.9rem 1rem;font-size:0.82rem;color:#fbbf24;line-height:1.5;margin-bottom:1.5rem;text-align:left">
+        ⏱️ Approval typically takes <strong>1–24 hours</strong>. Check your email inbox and spam folder.
+      </div>
+      <div style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem">Already approved? Sign in below</div>
+      <button class="btn-full" style="margin-top:0" onclick="showPage('signin')">Sign In to Dashboard</button>
+      <button class="btn-outline" style="width:100%;margin-top:0.8rem" onclick="showPage('home')">← Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- SIGN IN -->
+<div id="page-signin" class="page">
+  <div class="center-page">
+    <div class="pay-box">
+      <div style="font-family:'Space Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--accent);text-align:center;margin-bottom:0.3rem">Apex<span style="color:var(--text)">Edge</span></div>
+      <div class="box-title" style="font-size:1.3rem">Welcome back</div>
+      <div class="box-sub">Sign in to your approved trader account</div>
+      <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="you@email.com" id="si-email"></div>
+      <div class="form-group"><label class="form-label">Password</label><input class="form-input" type="password" placeholder="Your password" id="si-pass"></div>
+      <button class="btn-full" onclick="handleSignin()">Sign In</button>
+      <div style="text-align:center;margin-top:1rem;font-size:0.82rem;color:var(--muted)">No account? <a style="color:var(--accent);cursor:pointer" onclick="showPage('pay')">Pay $10 to apply</a></div>
+      <div style="text-align:center;margin-top:0.5rem;font-size:0.82rem"><a style="color:var(--accent);cursor:pointer" onclick="showPage('home')">← Back to Home</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTER (after approval) -->
+<div id="page-register" class="page">
+  <div class="center-page">
+    <div class="pay-box">
+      <div style="background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:10px;padding:0.8rem 1rem;text-align:center;margin-bottom:1.2rem;font-size:0.85rem;color:#10b981;font-weight:600">✅ Payment Approved! Create your account below.</div>
+      <div class="box-title" style="font-size:1.3rem">Create Your Account</div>
+      <div class="box-sub">Set a password to access your challenge dashboard.</div>
+      <div class="form-group"><label class="form-label">Full Name</label><input class="form-input" type="text" placeholder="Your full name" id="r-name"></div>
+      <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" placeholder="you@email.com" id="r-email"></div>
+      <div class="form-group"><label class="form-label">Set Password</label><input class="form-input" type="password" placeholder="Min. 8 characters" id="r-pass"></div>
+      <button class="btn-full" onclick="handleRegister()">Activate My Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div id="page-admin-login" class="page">
+  <div class="center-page">
+    <div class="pay-box">
+      <div style="text-align:center;font-size:2rem;margin-bottom:1rem">🔐</div>
+      <div class="box-title" style="font-size:1.3rem">Admin Access</div>
+      <div class="box-sub">ApexEdge Funding — Admin Panel</div>
+      <div class="form-group"><label class="form-label">Admin Password</label><input class="form-input" type="password" placeholder="Enter admin password" id="admin-pass"></div>
+      <button class="btn-full" onclick="adminLogin()">Access Admin Panel</button>
+      <div style="text-align:center;margin-top:1rem;font-size:0.82rem"><a style="color:var(--accent);cursor:pointer" onclick="showPage('home')">← Back to Home</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="page-admin" class="page">
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <div>
+        <div class="admin-title">⚙️ Admin Panel</div>
+        <div style="font-size:0.85rem;color:var(--muted);margin-top:0.2rem">ApexEdge Funding — Trader Management</div>
+      </div>
+      <div style="display:flex;gap:0.8rem">
+        <button class="btn-outline" style="padding:0.5rem 1rem;font-size:0.85rem" onclick="loadTraders()">🔄 Refresh</button>
+        <button class="btn-sm" onclick="showPage('home')">← Home</button>
+      </div>
+    </div>
+
+    <div class="admin-stats">
+      <div class="admin-stat"><div class="admin-stat-num" id="stat-total">0</div><div class="admin-stat-lbl">Total Traders</div></div>
+      <div class="admin-stat"><div class="admin-stat-num" style="color:#f59e0b" id="stat-pending">0</div><div class="admin-stat-lbl">Pending</div></div>
+      <div class="admin-stat"><div class="admin-stat-num" style="color:#10b981" id="stat-approved">0</div><div class="admin-stat-lbl">Approved</div></div>
+      <div class="admin-stat"><div class="admin-stat-num" style="color:var(--accent)" id="stat-revenue">$0</div><div class="admin-stat-lbl">Revenue</div></div>
+    </div>
+
+    <div class="traders-table">
+      <div class="table-header">
+        <div>Trader</div>
+        <div>Email</div>
+        <div>Payment</div>
+        <div>Date</div>
+        <div>Action</div>
+      </div>
+      <div id="traders-list"><div class="loading">Loading traders...</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- TRADER DASHBOARD -->
+<div id="page-dashboard" class="page">
+  <div class="dashboard">
+    <div class="dash-header">
+      <h2>Welcome, <span class="hl" id="dash-name">Trader</span> 👋</h2>
+      <p style="color:var(--muted);font-size:0.9rem;margin-top:0.3rem">Your challenge is active — trade your way to funding!</p>
+      <div class="dash-tags">
+        <span class="tag" id="dash-phase-tag">📊 Phase 1 Active</span>
+        <span class="tag tag-gold">$1,000 Account</span>
+        <span class="tag tag-green">✅ Approved</span>
+        <button class="btn-sm" onclick="showPage('home')">Home</button>
+        <button class="btn-sm" onclick="signOut()">Sign Out</button>
+      </div>
+    </div>
+
+    <!-- Exness Account Info -->
+    <div class="dash-card" style="border-color:rgba(16,185,129,0.3)">
+      <div class="dash-card-title">🖥️ Your Exness Demo Account</div>
+      <div class="acct-info-box">
+        <div class="acct-info-row"><span class="acct-info-key">Platform</span><span class="acct-info-val" id="acct-platform">Exness MT5</span></div>
+        <div class="acct-info-row"><span class="acct-info-key">Login ID</span><span class="acct-info-val" id="acct-login">—</span></div>
+        <div class="acct-info-row"><span class="acct-info-key">Password</span><span class="acct-info-val" id="acct-password">—</span></div>
+        <div class="acct-info-row"><span class="acct-info-key">Server</span><span class="acct-info-val" id="acct-server">Exness-Demo</span></div>
+        <div class="acct-info-row"><span class="acct-info-key">Balance</span><span class="acct-info-val">$1,000.00</span></div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--muted);line-height:1.5">Download MT5 from <strong style="color:var(--accent)">exness.com</strong> and log in with the details above to start trading.</div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric-card"><div class="metric-label">Account Balance</div><div class="metric-val" style="color:var(--accent)">$1,000.00</div><div class="metric-change" style="color:var(--muted)">Starting balance</div></div>
+      <div class="metric-card"><div class="metric-label">Profit Target</div><div class="metric-val" style="color:#10b981">$200</div><div class="metric-change" style="color:var(--muted)">20% of $1,000</div></div>
+      <div class="metric-card"><div class="metric-label">Max Daily Loss</div><div class="metric-val" style="color:var(--red)">$50</div><div class="metric-change" style="color:var(--muted)">5% limit</div></div>
+      <div class="metric-card"><div class="metric-label">Max Drawdown</div><div class="metric-val" style="color:var(--gold)">$100</div><div class="metric-change" style="color:var(--muted)">10% limit</div></div>
+    </div>
+
+    <div class="dash-grid">
+      <div>
+        <div class="dash-card">
+          <div class="dash-card-title">📋 Challenge Rules — Phase 1</div>
+          <div class="rule-row"><span class="rule-name">Profit Target</span><span class="rule-val val-green">20% ($200)</span><span class="rule-status"><span class="dot-warn"></span>In Progress</span></div>
+          <div class="rule-row"><span class="rule-name">Max Daily Loss</span><span class="rule-val val-red">5% ($50)</span><span class="rule-status"><span class="dot-ok"></span>Active</span></div>
+          <div class="rule-row"><span class="rule-name">Max Total Drawdown</span><span class="rule-val val-red">10% ($100)</span><span class="rule-status"><span class="dot-ok"></span>Active</span></div>
+          <div class="rule-row"><span class="rule-name">Time Limit</span><span class="rule-val val-blue">None</span><span class="rule-status"><span class="dot-ok"></span>Good</span></div>
+          <div class="rule-row"><span class="rule-name">Profit Split (Funded)</span><span class="rule-val val-gold">80% Yours</span><span class="rule-status"><span class="dot-ok"></span>Set</span></div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card-title">📈 Phase Progress</div>
+          <div class="phase-progress">
+            <div class="progress-header"><span class="progress-title">Profit Target (20%)</span><span class="progress-pct">0%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:0%"></div></div>
+            <div class="progress-meta">$0 earned of $200 target — log into MT5 to start</div>
+          </div>
+          <div class="phase-progress">
+            <div class="progress-header"><span class="progress-title">Drawdown Used</span><span class="progress-pct" style="color:#10b981">0%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:0%;background:linear-gradient(90deg,#10b981,#f59e0b)"></div></div>
+            <div class="progress-meta">$0 used of $100 max drawdown</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="dash-card">
+          <div class="dash-card-title">📱 How to Start Trading</div>
+          <div class="activity-list">
+            <div class="activity-item"><div class="activity-icon ai-info" style="flex-shrink:0">1</div><div><div class="activity-title">Download MT5</div><div class="activity-time">Go to exness.com and download MetaTrader 5</div></div></div>
+            <div class="activity-item"><div class="activity-icon ai-info" style="flex-shrink:0">2</div><div><div class="activity-title">Log In</div><div class="activity-time">Use your Login ID, Password and Server above</div></div></div>
+            <div class="activity-item"><div class="activity-icon ai-info" style="flex-shrink:0">3</div><div><div class="activity-title">Start Trading</div><div class="activity-time">Trade Forex, Gold, Indices within the rules</div></div></div>
+            <div class="activity-item"><div class="activity-icon ai-info" style="flex-shrink:0">4</div><div><div class="activity-title">Hit 20% Profit</div><div class="activity-time">Reach $200 profit to pass Phase 1</div></div></div>
+          </div>
+        </div>
+
+        <div class="dash-card">
+          <div class="dash-card-title">💰 Profit Split</div>
+          <div style="font-size:0.8rem;color:var(--muted);margin-bottom:1rem;line-height:1.5">After passing both phases and getting your funded account, you keep <strong style="color:var(--gold)">80%</strong> of all profits.</div>
+          <div class="rule-row" style="padding:0.5rem 0"><span class="rule-name">Your share</span><span class="rule-val val-green">80%</span></div>
+          <div class="rule-row" style="padding:0.5rem 0"><span class="rule-name">Firm share</span><span class="rule-val val-gold">20%</span></div>
+          <div class="rule-row" style="padding:0.5rem 0"><span class="rule-name">Min withdrawal</span><span class="rule-val val-blue">20% of profit</span></div>
+          <div style="margin-top:1rem;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:8px;padding:0.8rem;font-size:0.8rem;color:#10b981;line-height:1.5">🎯 Focus on passing Phase 1 first. Keep your drawdown low and be consistent!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPROVE MODAL -->
+<div class="modal-overlay" id="approve-modal">
+  <div class="modal">
+    <div class="modal-title">✅ Approve Trader</div>
+    <div class="modal-sub">Enter the Exness demo account details for this trader. They will receive these via email.</div>
+    <div class="form-group"><label class="form-label">Trader Name</label><input class="form-input" id="m-name" readonly style="opacity:0.6"></div>
+    <div class="form-group"><label class="form-label">Trader Email</label><input class="form-input" id="m-email" readonly style="opacity:0.6"></div>
+    <div class="form-group"><label class="form-label">Exness Login ID</label><input class="form-input" id="m-login" placeholder="e.g. 12345678"></div>
+    <div class="form-group"><label class="form-label">Exness Password</label><input class="form-input" id="m-password" placeholder="e.g. Trader@123"></div>
+    <div class="form-group"><label class="form-label">Server</label><input class="form-input" id="m-server" value="Exness-Demo" placeholder="Exness-Demo"></div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-confirm" onclick="confirmApprove()">✅ Approve & Notify</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">✓ Done!</div>
+
+<script>
+var SUPABASE_URL = 'https://wegljbezwpntbsvxoxfu.supabase.co';
+var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlZ2xqYmV6d3BudGJzdnhveGZ1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI0MTQ5MTQsImV4cCI6MjA5Nzk5MDkxNH0.CFA9tC2p0Yz1zj8kHfXBiJQqZc50ShuQbhUUQVK0iJE';
+var PAYSTACK_KEY = 'pk_test_4c9d80b80485221e5ffea3a1c6561cb9b7319e4a';
+var ADMIN_PASSWORD = 'ApexEdge2025!';
+var currentApproveId = null;
+
+// ── SUPABASE HELPER ──
+function sbFetch(path, method, body){
+  return fetch(SUPABASE_URL + '/rest/v1/' + path, {
+    method: method || 'GET',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': method === 'POST' ? 'return=representation' : ''
+    },
+    body: body ? JSON.stringify(body) : undefined
+  }).then(function(r){ return r.json(); });
+}
+
+// ── NAVIGATION ──
+function showPage(name){
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
+  document.getElementById('page-'+name).classList.add('active');
+  window.scrollTo(0,0);
+  if(name==='admin') loadTraders();
+}
+function goRules(){
+  showPage('home');
+  setTimeout(function(){
+    var el=document.getElementById('rules-section');
+    if(el) el.scrollIntoView({behavior:'smooth'});
+  },100);
+}
+
+// ── PAYMENT ──
+function selectMethod(method,el){
+  document.querySelectorAll('.method-card').forEach(function(c){c.classList.remove('active')});
+  document.querySelectorAll('.payment-panel').forEach(function(p){p.classList.remove('active')});
+  el.classList.add('active');
+  document.getElementById('panel-'+method).classList.add('active');
+}
+
+function loadPaystack(cb){
+  if(window.PaystackPop){cb();return;}
+  var s=document.createElement('script');
+  s.src='https://js.paystack.co/v1/inline.js';
+  s.onload=cb;
+  document.head.appendChild(s);
+}
+
+function payByCard(){
+  var name=document.getElementById('card-name').value.trim();
+  var email=document.getElementById('card-email').value.trim();
+  if(!name){alert('Please enter your full name.');return;}
+  if(!email||email.indexOf('@')===-1){alert('Please enter a valid email.');return;}
+  loadPaystack(function(){
+    var handler=PaystackPop.setup({
+      key: PAYSTACK_KEY,
+      email: email,
+      amount: 1500000,
+      currency: 'NGN',
+      ref: 'APEX-'+Math.floor(Math.random()*1000000000),
+      metadata:{custom_fields:[{display_name:'Full Name',variable_name:'full_name',value:name}]},
+      callback: function(response){
+        saveTrader(name, email, 'card', 'Ref: '+response.reference);
+      },
+      onClose: function(){}
+    });
+    handler.openIframe();
+  });
+}
+
+function submitCrypto(){
+  var name=document.getElementById('p-name').value.trim();
+  var email=document.getElementById('p-email').value.trim();
+  var txhash=document.getElementById('p-txhash').value.trim();
+  if(!name){alert('Please enter your full name.');return;}
+  if(!email||email.indexOf('@')===-1){alert('Please enter a valid email.');return;}
+  if(!txhash||txhash.length<10){alert('Please paste your transaction hash.');return;}
+  saveTrader(name, email, 'crypto', txhash);
+}
+
+function saveTrader(name, email, method, ref){
+  sbFetch('traders', 'POST', {
+    name: name,
+    email: email,
+    payment_method: method,
+    payment_ref: ref,
+    status: 'pending',
+    created_at: new Date().toISOString()
+  }).then(function(){
+    document.getElementById('display-txhash').textContent = ref;
+    showPage('pending');
+  }).catch(function(){
+    // Still show pending even if save fails
+    document.getElementById('display-txhash').textContent = ref;
+    showPage('pending');
+  });
+}
+
+// ── ADMIN ──
+function adminLogin(){
+  var pass=document.getElementById('admin-pass').value;
+  if(pass===ADMIN_PASSWORD){
+    showPage('admin');
+  } else {
+    alert('Wrong password. Try again.');
+  }
+}
+
+function loadTraders(){
+  document.getElementById('traders-list').innerHTML='<div class="loading">Loading...</div>';
+  sbFetch('traders?order=created_at.desc').then(function(data){
+    if(!data||data.length===0){
+      document.getElementById('traders-list').innerHTML='<div class="empty-state">No traders yet. Share your site to get started!</div>';
+      updateStats([]);
+      return;
+    }
+    updateStats(data);
+    var html='';
+    data.forEach(function(t){
+      var date=new Date(t.created_at).toLocaleDateString();
+      var statusBadge='<span class="status-badge status-'+t.status+'">'+t.status.toUpperCase()+'</span>';
+      var actions='';
+      if(t.status==='pending'){
+        actions='<button class="approve-btn" onclick="openApprove(\''+t.id+'\',\''+t.name+'\',\''+t.email+'\')">Approve</button><button class="reject-btn" onclick="rejectTrader(\''+t.id+'\')">Reject</button>';
+      } else if(t.status==='approved'){
+        actions='<span style="color:#10b981;font-size:0.78rem">✓ Approved</span>';
+      } else {
+        actions='<span style="color:#ef4444;font-size:0.78rem">✗ Rejected</span>';
+      }
+      html+='<div class="table-row"><div><strong>'+t.name+'</strong></div><div style="color:var(--muted);font-size:0.8rem">'+t.email+'</div><div><span style="font-size:0.78rem;color:var(--accent)">'+t.payment_method+'</span></div><div style="color:var(--muted);font-size:0.78rem">'+date+'</div><div>'+actions+'</div></div>';
+    });
+    document.getElementById('traders-list').innerHTML=html;
+  }).catch(function(){
+    document.getElementById('traders-list').innerHTML='<div class="empty-state">⚠️ Could not load traders. Check your Supabase setup.</div>';
+  });
+}
+
+function updateStats(data){
+  var pending=data.filter(function(t){return t.status==='pending'}).length;
+  var approved=data.filter(function(t){return t.status==='approved'}).length;
+  document.getElementById('stat-total').textContent=data.length;
+  document.getElementById('stat-pending').textContent=pending;
+  document.getElementById('stat-approved').textContent=approved;
+  document.getElementById('stat-revenue').textContent='$'+data.length*10;
+}
+
+function openApprove(id, name, email){
+  currentApproveId=id;
+  document.getElementById('m-name').value=name;
+  document.getElementById('m-email').value=email;
+  document.getElementById('m-login').value='';
+  document.getElementById('m-password').value='';
+  document.getElementById('m-server').value='Exness-Demo';
+  document.getElementById('approve-modal').classList.add('active');
+}
+
+function closeModal(){
+  document.getElementById('approve-modal').classList.remove('active');
+  currentApproveId=null;
+}
+
+function confirmApprove(){
+  var login=document.getElementById('m-login').value.trim();
+  var password=document.getElementById('m-password').value.trim();
+  var server=document.getElementById('m-server').value.trim();
+  var name=document.getElementById('m-name').value;
+  var email=document.getElementById('m-email').value;
+  if(!login||!password){alert('Please enter the Exness login ID and password.');return;}
+
+  // Update status in Supabase
+  sbFetch('traders?id=eq.'+currentApproveId, 'PATCH', {
+    status: 'approved',
+    exness_login: login,
+    exness_password: password,
+    exness_server: server,
+    approved_at: new Date().toISOString()
+  }).then(function(){
+    closeModal();
+    showToast('✅ Trader approved! Send them their login details manually via email for now.');
+    loadTraders();
+    // Show email to send
+    setTimeout(function(){
+      alert('EMAIL TO SEND:\n\nTo: '+email+'\nSubject: Your ApexEdge Account is Approved!\n\nHi '+name+',\n\nYour ApexEdge challenge account has been approved!\n\nYour Exness Demo Details:\nLogin ID: '+login+'\nPassword: '+password+'\nServer: '+server+'\nBalance: $1,000\n\nDownload MT5 from exness.com and log in to start trading.\n\nRemember:\n- Profit Target: 20% ($200)\n- Max Daily Loss: 5% ($50)\n- Max Drawdown: 10% ($100)\n\nGood luck!\nApexEdge Funding Team');
+    }, 500);
+  });
+}
+
+function rejectTrader(id){
+  if(!confirm('Reject this trader?')) return;
+  sbFetch('traders?id=eq.'+id, 'PATCH', {status:'rejected'}).then(function(){
+    showToast('Trader rejected.');
+    loadTraders();
+  });
+}
+
+// ── AUTH ──
+function handleSignin(){
+  var email=document.getElementById('si-email').value.trim();
+  var pass=document.getElementById('si-pass').value.trim();
+  if(!email||!pass){alert('Please enter your email and password.');return;}
+
+  // Check if approved trader
+  sbFetch('traders?email=eq.'+encodeURIComponent(email)+'&status=eq.approved').then(function(data){
+    if(data&&data.length>0){
+      var trader=data[0];
+      localStorage.setItem('ae_trader', JSON.stringify(trader));
+      loadDashboard(trader);
+    } else {
+      alert('Account not found or not yet approved. Please wait for approval email.');
+    }
+  });
+}
+
+function loadDashboard(trader){
+  document.getElementById('dash-name').textContent=trader.name.split(' ')[0];
+  document.getElementById('acct-login').textContent=trader.exness_login||'Pending';
+  document.getElementById('acct-password').textContent=trader.exness_password||'Pending';
+  document.getElementById('acct-server').textContent=trader.exness_server||'Exness-Demo';
+  showPage('dashboard');
+}
+
+function handleRegister(){
+  var name=document.getElementById('r-name').value.trim();
+  var email=document.getElementById('r-email').value.trim();
+  var pass=document.getElementById('r-pass').value.trim();
+  if(!name||!email||!pass){alert('Please fill in all fields.');return;}
+  if(pass.length<8){alert('Password must be at least 8 characters.');return;}
+  localStorage.setItem('ae_name',name);
+  document.getElementById('dash-name').textContent=name.split(' ')[0];
+  showPage('dashboard');
+}
+
+function signOut(){
+  localStorage.removeItem('ae_trader');
+  showPage('home');
+}
+
+// ── CRYPTO ──
+function switchNet(net,btn){
+  document.querySelectorAll('.ntab').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.wallet-panel').forEach(function(p){p.classList.remove('active')});
+  btn.classList.add('active');
+  document.getElementById('net-'+net).classList.add('active');
+}
+
+function copyAddr(id){
+  var text=document.getElementById(id).textContent.trim();
+  var t=document.getElementById('toast');
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){showToast('✓ Address copied!')});
+  } else {
+    var el=document.getElementById(id);
+    var range=document.createRange();
+    range.selectNode(el);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    showToast('✓ Address copied!');
+  }
+}
+
+function showToast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show')},3000);
+}
+
+// ── ADMIN SHORTCUT ──
+// Go to yoursite.com/#admin to access admin panel
+if(window.location.hash==='#admin'){
+  setTimeout(function(){showPage('admin-login')},100);
+}
+
+// Restore session
+var savedTrader=localStorage.getItem('ae_trader');
+if(savedTrader){
+  try{
+    var t=JSON.parse(savedTrader);
+    document.getElementById('dash-name').textContent=t.name.split(' ')[0];
+  }catch(e){}
+}
+</script>
+</body>
+</html>
